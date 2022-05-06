@@ -71,6 +71,13 @@ git@github.com:maximmajor/backend_health-booking-app.git
 
 samples of the screens:
 
+
+![My Image](istImage.jpeg”)
+
+![My Image](/secondImage.jpeg)
+
+
+
 <img
 src="relative/path/in/repository/to/istImage.jpeg”
 raw=true
