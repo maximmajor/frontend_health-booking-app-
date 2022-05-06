@@ -72,7 +72,7 @@ git@github.com:maximmajor/backend_health-booking-app.git
 samples of the screens:
 
 <img
-src=“./istImage.jpeg”
+src="relative/path/in/repository/to/istImage.jpeg”
 raw=true
 alt=“home screen”
 style=“margin-right: 10px;”
