@@ -69,3 +69,19 @@ git@github.com:maximmajor/backend_health-booking-app.git
     if went through "success"
     if not "failure"
 
+samples of the screens:
+
+<img
+src=“./istImage.jpeg”
+raw=true
+alt=“home screen”
+style=“margin-right: 10px;”
+/>
+
+
+<img
+src=“./secondImage.jpeg”
+raw=true
+alt=“details screen”
+style=“margin-right: 10px;”
+/>
