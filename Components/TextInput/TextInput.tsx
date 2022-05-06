@@ -70,7 +70,7 @@ const Input = (props:any) => {
     dispatch({ type: INPUT_BLUR });
   };
 
-  const validationColor = !inputState.isValid && inputState.touched ? '#FF5A5F' : '#FECD05';
+  const validationColor = !inputState.isValid && inputState.touched ? '#FF5A5F' : '#00cd52d1';
   return (
         <View style={{ marginTop: 40, marginBottom: -5, flex: 1 }}>
         <FloatingLabelInput

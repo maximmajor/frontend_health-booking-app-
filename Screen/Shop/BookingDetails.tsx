@@ -1,42 +1,28 @@
-// import React, { useState } from 'react';
-// import { View, Text, TextInput, TouchableHighlight } from 'react-native';
 import React, {
-
     useState,
   } from "react";
   
-  
-  
   import {
     ScrollView,
-    SafeAreaView,
     Text,
-    View,
     TouchableOpacity,
     ActivityIndicator,
-    Button,
     Alert,
   } from "react-native";
   import styled from "styled-components";
   import { Goback } from "../../assets/icon";
-  import { useNavigation } from "../../Hooks/useNavigation";
-  import { FloatingLabelInput } from "react-native-floating-label-input";
   import { LinearGradient } from "expo-linear-gradient";
   import TextInput from "../../Components/TextInput/TextInput";
-  import { useSelector } from "react-redux";
   import { baseUrl } from "../../Constants/baseUrl";
-  import Loading from "../../Components/Loading/Loading";
-  import Product from "../../Models/Product";
   import Colors from "../../Constants/Colors";
   import * as yup from 'yup'
   
   import {useForm, Controller} from 'react-hook-form'
+ 
   
-  
-  const ResetPassword = ({route,  navigation }: any) => {
-    const token = route.params ? route.params.token : null
-    // console.log(token, "koloo")
-  
+  const BookingDetails = ({route,  navigation }: any) => {
+    const { hospitalId } = route.params;
+  console.log(hospitalId, "manacaa")
     // const [newPassword, setnewPassword] = useState("");
     const [number, setNumber] = useState("56");
     const [date, setDate] = useState("2017-03-01");
@@ -47,16 +33,13 @@ import React, {
     const [loading, setLoading] = useState(false);
   
   
-  
-    const _onPressButton = async () => {
-  
-    };
-  
-  
     const { control, handleSubmit, formState: { errors } } = useForm({
       defaultValues: {
-        newPassword: '',
-        repeatPassword: '',
+        name: '',
+        phonenNmber: '',
+        email: '',
+        illnessType: '',
+        photo: ''
       }
     });
     
@@ -64,10 +47,10 @@ import React, {
       console.log(data)
       setError(null);
       setLoading(true)
-      console.log(data.newPassword, "clicked");
+      console.log(data.name, "clicked");
       try {
         const response = await fetch(
-          `${baseUrl}/profile/buyer/resetpassword/${token}`,
+          `${baseUrl}/users/book/appointment/${hospitalId}`,
           {
             method: "POST",
             headers: {
@@ -76,8 +59,11 @@ import React, {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              newPassword: data.newPassword,
-              repeatPassword: data.repeatPassword,
+              name: data.name,
+              phonenNmber: data.phonenNmber,
+              email: data.email,
+              illnessType: data.illnessType,
+              photo: data.photo
             }),
           }
         );
@@ -91,19 +77,16 @@ import React, {
         }
         //retreiving response
         const resData = await response.json();
-        console.log(resData, "reset indi");
-        Alert.alert("password Reset successfull", 'Kindly login', [{ text: "Okay" }]);
-        navigation.navigate("Login", {
-          token: token
-        })
-      
-      
+        console.log(resData, "Bokked");
+        Alert.alert("Booking successfull", '', [{ text: "Okay" }]);
       } catch (err: any) {
         setError(err.message);
+        Alert.alert( err.message, '', [{ text: "Okay" }]);
       }
       setError(null);
       setLoading(false)
     }
+    
     return (
       <Container>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -115,11 +98,11 @@ import React, {
               }}
             />
             <Title>
-              Reset Password<Text style={{ color: "#FECD05", fontSize: 32 }}>.</Text>
+              Patient Details<Text style={{ color: "#FECD05", fontSize: 32 }}>.</Text>
             </Title>
           </TitleBar>
   
-          <Text           style={{marginTop: 50, marginBottom:-20}}>New password</Text>
+          <Text           style={{marginTop: 50, marginBottom:-20}}>Name</Text>
           <Controller
           control={control}
           rules={{
@@ -131,14 +114,14 @@ import React, {
               onChangeText={onChange}
               value={value}
               autoCapitalize="none"
-              label="Enter a new password"
+              label="Enter your name"
             />
           )}
-          name="newPassword"
+          name="name"
         />
-        {errors.newPassword && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>please enter a valid password.</Text>}     
+        {errors.name && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>please enter a valid name.</Text>}     
   
-        <Text           style={{marginTop: 50, marginBottom:-20}}>Repeat password</Text>
+        <Text           style={{marginTop: 50, marginBottom:-20}}>Phone Number</Text>
         <Controller
           control={control}
           rules={{
@@ -150,20 +133,60 @@ import React, {
               onChangeText={onChange}
               value={value}
               autoCapitalize="none"
-              label="repeat password"
+              label="Enter your phone number"
             />
           )}
-          name="repeatPassword"
+
+          name="phonenNmber"
         />
-        {errors.repeatPassword && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>password must match new password</Text>}     
+        {errors.phonenNmber && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>Enter a correct phone Number</Text>} 
+
+                <Text           style={{marginTop: 50, marginBottom:-20}}>Email</Text>
+        <Controller
+          control={control}
+          rules={{
+           required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              autoCapitalize="none"
+              label="Enter your email"
+            />
+          )}
+
+          name="email"
+        />
+        {errors.email && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>Enter a valid email</Text>}   
+
+        
+                <Text           style={{marginTop: 50, marginBottom:-20}}>Illness Type</Text>
+        <Controller
+          control={control}
+          rules={{
+           required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              autoCapitalize="none"
+              label="Enter your illness type"
+            />
+          )}
+
+          name="illnessType"
+        />
+        {errors.illnessType && <Text style={{fontSize:13,  marginTop:10,color:"red"}}>Enter a valid illness type </Text>}     
   
         
         {/* <Button title='Submit' /> */}
   
         <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            {/* <ButtonLargeYellow title="Create Account" /> */}
             <LinearGradient
-              // Button Linear Gradient
               colors={[Colors.primaryColor, Colors.linearYellow]}
               style={{
                 // width: 340,
@@ -181,7 +204,7 @@ import React, {
                 {loading ? (
                   <ActivityIndicator size="large" color="#ffffff" />
                 ) : (
-                  "reset"
+                  "Book Now"
                 )}{" "}
               </CheckoutText>
             </LinearGradient>
@@ -191,7 +214,7 @@ import React, {
     );
   };
   
-  export default ResetPassword;
+  export default BookingDetails;
   const Container = styled.View`
     flex: 1;
     background: #f9f9f9;

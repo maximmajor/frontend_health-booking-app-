@@ -83,7 +83,11 @@ function ProductDetailScreen({ route, navigation }: any) {
             {" "}
             Hospital address: {address && address}
           </ProductDescription>
-          <TouchableOpacity>
+          <TouchableOpacity    onPress={() => {
+                        navigation.push("Book", {
+                          hospitalId: hospitalId
+                        });
+                      }}>
             <LinearGradient
               colors={[Colors.primaryColor, Colors.linearYellow]}
               style={{
@@ -98,7 +102,7 @@ function ProductDetailScreen({ route, navigation }: any) {
                 marginTop: 30,
               }}
             >
-              <CheckoutText>Book Now</CheckoutText>
+              <CheckoutText>Proceed to Booking</CheckoutText>
             </LinearGradient>
           </TouchableOpacity>
         </ScrollView>
