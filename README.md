@@ -25,3 +25,47 @@ Documentation: once you clone the project,
 2. run yarn start. (to start the project)
 3. you must have an android emulator to run this app
 
+
+
+BACKEND API
+the backend can be clone from the
+git@github.com:maximmajor/backend_health-booking-app.git
+
+
+1.  to add list of hospitals:
+    Request: POST
+    routes: baseUrl/hospital/add
+          body: {
+            "hospitalName": "Adefemi Hospital",
+            "address": "ikeja lagos",
+            "doctorsName": "mr tomisola abigail"
+
+    }
+
+2.  to see list of hospital
+    Request: GET
+    routes: baseUrl/hospital/list
+
+3.  to see mock list of hospial
+    Request: GET
+    routes: baseUrl/hospital/list/mock
+
+
+4.  to book for an appointment with a doctor.
+    Request: POST
+    routes: baseUrl/users/book/appointment/:hospitalId
+
+    please note that email must be unique to get a "success" response
+
+           body: {
+            "name": "major",
+            "phonenNmber": 070.....,
+            "email": "me@gmail.com",
+            "illnessType": malaria ,
+            "photo": .jpg
+            }
+
+    Response:
+    if went through "success"
+    if not "failure"
+
