@@ -72,7 +72,7 @@ git@github.com:maximmajor/backend_health-booking-app.git
 samples of the screens:
 
 
-![My Image](/istImage.jpeg”)
+![My Image](/istImage.jpeg)
 
 
 ![My Image](/third.jpeg)
