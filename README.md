@@ -15,4 +15,13 @@ Simple user story
 TECHNOLOGIES:
 1. Expo react native cli
 2. typescript
-3. 
+3. React Native Navigation 6
+4. inbuilt fetch
+5. styled component
+
+
+Documentation: once you clone the project,
+1. run yarn (to get all dependenciesand node modules)
+2. run yarn start. (to start the project)
+3. you must have an android emulator to run this app
+

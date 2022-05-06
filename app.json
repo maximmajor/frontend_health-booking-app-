@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "scheme": "healthapp",
+    "name": "Health App",
+    "slug": "healthapp",
+    "privacy": "public",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/adaptive-icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.health.health-app"
+    },
+    "android": {
+      "versionCode": 2,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FECD05"
+      },
+      "package": "com.health.health"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "Health application "
+  }
+}
